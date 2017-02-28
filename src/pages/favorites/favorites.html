@@ -8,5 +8,25 @@
 
 
 <ion-content padding>
-  <h1>Main Page here!</h1>
+
+  <ion-card *ngFor="let quote of favoriteQuotes; let i = index">
+
+    <ion-card-header class="card-id">
+      <b>#{{i+1}}</b>
+    </ion-card-header>
+
+    <ion-card-content >
+      <p style="font-size:1.2em">{{quote.text}}</p>
+      <br>
+      <p class="author">{{quote.person | uppercase}}</p>
+    </ion-card-content>
+
+    <!-- <ion-row>
+      <ion-col text-right>
+        <button ion-button clear (click)="onAddToFavorite(quote)">Favorite</button>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-card>
+
 </ion-content>
