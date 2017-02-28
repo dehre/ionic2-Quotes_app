@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ModalController} from "ionic-angular";
 import {Quote} from "../../data/quote.interface";
 import { QuotesService } from "../../services/quotes.service";
 import {QuotePage} from "../quote/quote";
@@ -9,13 +10,20 @@ import {QuotePage} from "../quote/quote";
 })
 export class FavoritesPage {
 
-  private favoriteQuotes:Quote[];
-  private quotePage = QuotePage;
+  private quotes:Quote[];
 
-  constructor(private quotesService:QuotesService) {}
+  constructor(
+    private quotesService:QuotesService,
+    private modalCtrl:ModalController
+  ){}
 
   ionViewWillEnter(){
-    this.favoriteQuotes = this.quotesService.getFavoriteQuotes();
+    this.quotes = this.quotesService.getFavoriteQuotes();
+  }
+
+  onViewQuote(quote:Quote){
+    const modal = this.modalCtrl.create(QuotePage,{quote:quote});
+    modal.present();
   }
 
 }

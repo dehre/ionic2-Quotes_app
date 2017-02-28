@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 import {Quote} from "../../data/quote.interface";
 
 @Component({
@@ -8,13 +8,23 @@ import {Quote} from "../../data/quote.interface";
 })
 export class QuotePage {
 
-  private quote:Quote;
+  private person:string;
+  private text:string;
 
-  constructor(public navParams: NavParams){}
+  constructor(
+    public navParams: NavParams,
+    private viewCtrl:ViewController){}
 
-  ionViewWillEnter(){
-    this.quote = this.navParams.data;
-    console.log('From QuotePage',this.quote);
+  ionViewDidLoad(){
+    let quote = this.navParams.get('quote');
+    this.person = quote.person;
+    this.text = quote.text;
+    console.log('From QuotePage',this.person);
+    console.log('From QuotePage',this.text);
+  }
+
+  onClose(){
+    this.viewCtrl.dismiss();
   }
 
 }
