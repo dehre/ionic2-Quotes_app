@@ -19,12 +19,10 @@ export class QuotePage {
     let quote = this.navParams.get('quote');
     this.person = quote.person;
     this.text = quote.text;
-    console.log('From QuotePage',this.person);
-    console.log('From QuotePage',this.text);
   }
 
-  onClose(){
-    this.viewCtrl.dismiss();
+  onClose(remove = false){
+    this.viewCtrl.dismiss(remove);
   }
 
 }
