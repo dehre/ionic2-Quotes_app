@@ -15,4 +15,12 @@ export class QuotesService {
     const position = this.favoriteQuotes.indexOf(quote);
     this.favoriteQuotes.splice(position,1);
   }
+
+  isQuoteFavorite(quote:Quote){
+    if(this.favoriteQuotes.indexOf(quote) === -1){
+      return false;
+    }
+    return true;
+  }
+
 }
