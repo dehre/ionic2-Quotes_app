@@ -19,7 +19,6 @@ export class QuotesPage implements OnInit {
 
   ngOnInit(){
     this.quoteGroup = this.navParams.data;
-    console.log(this.quoteGroup);
   }
 
   onAddToFavorite(selectedQuote:Quote){
@@ -31,13 +30,12 @@ export class QuotesPage implements OnInit {
         {
           text: 'No',
           role: 'cancel',
-          handler: ()=>{console.log('No')}
+          handler: ()=>{}
         },
         {
           text: 'Yes',
           handler: ()=>{
             this.quotesService.addQuoteToFavorites(selectedQuote);
-            console.log(this.quotesService.getFavoriteQuotes())
           }
         }
       ]

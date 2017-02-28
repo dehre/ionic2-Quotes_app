@@ -9,7 +9,10 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let quote of favoriteQuotes; let i = index">
+  <ion-card
+  [navPush]="quotePage"
+  [navParams]="quote"
+  *ngFor="let quote of favoriteQuotes; let i = index">
 
     <ion-card-header class="card-id">
       <b>#{{i+1}}</b>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
+import {Quote} from "../../data/quote.interface";
 
 @Component({
   selector: 'page-quote',
@@ -7,10 +8,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class QuotePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  private quote:Quote;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotePage');
+  constructor(public navParams: NavParams){}
+
+  ionViewWillEnter(){
+    this.quote = this.navParams.data;
+    console.log('From QuotePage',this.quote);
   }
 
 }
