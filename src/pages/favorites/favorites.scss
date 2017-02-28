@@ -10,4 +10,7 @@ page-favorites {
       content: "- "
     }
   }
+  .alt {
+    background-color: color($colors, altQuoteBackground)
+  }
 }
