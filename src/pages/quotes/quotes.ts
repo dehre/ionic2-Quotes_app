@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, AlertController } from 'ionic-angular';
+import {QuotesService} from "../../services/quotes.service";
 import {Quote} from "../../data/quote.interface";
 
 @Component({
@@ -10,15 +11,38 @@ export class QuotesPage implements OnInit {
 
   quoteGroup:{category: string, quotes: Quote[], icon:string};
 
-  constructor(private navParams: NavParams) {}
+  constructor(
+    private navParams: NavParams,
+    private alertCtrl: AlertController,
+    private quotesService:QuotesService
+  ) {}
 
   ngOnInit(){
     this.quoteGroup = this.navParams.data;
     console.log(this.quoteGroup);
   }
 
-  onAddToFavorite(quote){
-    console.log('added',quote)
+  onAddToFavorite(selectedQuote:Quote){
+    const alert = this.alertCtrl.create({
+      title: 'Add to Favorites',
+      subTitle: 'Are you sure?',
+      message: 'Are you sure you want to add the quote?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: ()=>{console.log('No')}
+        },
+        {
+          text: 'Yes',
+          handler: ()=>{
+            this.quotesService.addQuoteToFavorites(selectedQuote);
+            console.log(this.quotesService.getFavoriteQuotes())
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

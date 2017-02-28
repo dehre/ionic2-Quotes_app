@@ -2,7 +2,15 @@ page-quotes {
   .card-id {
     text-align: center;
   }
-  .card-author {
+  .author {
     text-align: right;
+    color: #ccc;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+
+    &:before {
+      content: "- "
+    }
   }
 }
